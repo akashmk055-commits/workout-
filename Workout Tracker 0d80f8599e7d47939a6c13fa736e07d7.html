@@ -1,0 +1,640 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Workout Tracker </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="72de923b-869d-4b0b-bca8-9e724f0446f1" class="page sans"><header><img class="page-cover-image" src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?ixlib=rb-1.2.1&amp;q=85&amp;fm=jpg&amp;crop=entropy&amp;cs=srgb" style="object-position:center 14.659999999999995%"/><h1 class="page-title">Workout Tracker </h1></header><div class="page-body"><p id="16b79dc9-a787-48fc-a1c3-2e173b499eba" class=""><strong>Instructions for WorkOut</strong></p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="8a20d1d7-8567-4d59-9953-56235621f2d7"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">12-20 Repetition with 3 sets</div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="edf154b4-3c0d-4ffe-9715-39598dc3d739"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">1-2 minutes of rest</div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="eeab02f3-cf32-492e-bb6d-682e7536b7e0"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">8-10 minutes of warm-up</div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="e6206bd3-d37a-469c-87cb-a1417a413357"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">5-10 minutes of stretching</div></figure><p id="c418509c-0d8b-40c1-9a87-7544496d7fda" class="">
+</p><p id="35b74230-ddd8-4b2e-921f-73cc27d0704f" class=""><strong>Diet</strong></p><ol type="1" id="d7d201ae-38db-4a36-bcdd-cb1d30b0071f" class="numbered-list" start="1"><li>Peanut Butter</li></ol><ol type="1" id="6fd5929b-da72-4c7b-8906-36b630061440" class="numbered-list" start="2"><li>Milk+Powder</li></ol><ol type="1" id="7a7cbb1f-d30e-4094-a6f1-c1ae57a3f6f5" class="numbered-list" start="3"><li>Eggs</li></ol><p id="a975655f-8c60-4967-9c39-722fc1316967" class="">
+</p><ul id="11475ba8-c981-4877-a0de-53c8c6b04b5e" class="block-color-purple toggle"><li><details open=""><summary><strong>Monday (Chest and Triceps Workout)</strong></summary><ul id="015f2398-5333-460c-8abd-edd0ff806f82" class="toggle"><li><details open=""><summary><strong>Chest</strong></summary><ul id="ec9048da-3e6a-4351-a671-cb8c74b9487e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Pushups (3 SETS || 12-20 REP)</span></li></ul><p id="4c6af817-9a11-4e88-882e-53b4b64ebafb" class="">The arm and back should be straight. </p><figure id="e788336e-0865-4a41-8fcd-4d9be6b70a4b" class="image"><a href="https://c.tenor.com/gI-8qCUEko8AAAAM/pushup.gif"><img style="width:288px" src="https://c.tenor.com/gI-8qCUEko8AAAAM/pushup.gif"/></a></figure><ul id="d3e43c81-5172-4eff-99fd-451f76aae3d9" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Incline Pushups (3 SETS || 12-20 REP )</span><p id="21d7b85a-5b78-4f96-8b7d-5bace6c0daa8" class="">Straight Arm and Back</p></li></ul><figure id="6650910d-53b0-4055-ba38-de8467fb642b" class="image"><a href="https://177d01fbswx3jjl1t20gdr8j-wpengine.netdna-ssl.com/wp-content/uploads/2019/06/Incline-Push-Up.gif"><img style="width:288px" src="https://177d01fbswx3jjl1t20gdr8j-wpengine.netdna-ssl.com/wp-content/uploads/2019/06/Incline-Push-Up.gif"/></a></figure><ul id="35313b0e-44bd-4e36-b344-8e799cc6fb32" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Decline Pushups (3 SETS || 12-20 REP)</span></li></ul><figure id="e2606e63-8e19-466a-a9ac-cd8b8f14e7c4" class="image"><a href="https://fitnessfreakpoint.com/wp-content/uploads/2020/08/Decline-Push-Up.gif"><img style="width:288px" src="https://fitnessfreakpoint.com/wp-content/uploads/2020/08/Decline-Push-Up.gif"/></a></figure><ul id="ab2c344c-34ae-4772-9ed4-953cc9102413" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Dumbell Scoop (3 SETS || 12-20 REP)</span></li></ul><figure id="793c2790-32b6-46b1-a935-4688e50947b0" class="image"><a href="https://qph.fs.quoracdn.net/main-qimg-a135ab173947ce2ea971d88c86460fe3"><img style="width:192px" src="https://qph.fs.quoracdn.net/main-qimg-a135ab173947ce2ea971d88c86460fe3"/></a></figure><ul id="e00a8b15-2a88-4874-b251-75f4d48d0c98" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Dumbell Fly (Floor) (3 SETS || 12-20 REP)</span></li></ul><figure id="64e54d39-1820-4bb0-8a60-9c1310e6d5fd" class="image"><a href="https://workouts4fitness.files.wordpress.com/2017/03/incline-fly-dumbbell-bench-press.gif?w=640"><img style="width:336px" src="https://workouts4fitness.files.wordpress.com/2017/03/incline-fly-dumbbell-bench-press.gif?w=640"/></a></figure></details></li></ul><ul id="d5d7b6fb-4f3c-4390-bfc5-cb062907bd84" class="toggle"><li><details open=""><summary><strong>Triceps</strong></summary><ul id="ae7f355e-aa5b-4c73-b235-980092ffa5ce" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Triceps Bench Dips</span></li></ul><figure id="73fe4f6e-108e-4956-a266-394e901b5c09" class="image"><a href="https://thumbs.gfycat.com/FittingImpassionedAmethystinepython-max-1mb.gif"><img style="width:288px" src="https://thumbs.gfycat.com/FittingImpassionedAmethystinepython-max-1mb.gif"/></a></figure><ul id="28a9fbe6-2ed0-4a2b-acb9-6ceb118ea364" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Close Grip Pushups</span></li></ul><figure id="41509f37-b3f4-43e7-9e88-1495b6474a6e" class="image"><a href="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/workouts/2016/03/closehandspushup-1456956569.gif"><img style="width:288px" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/workouts/2016/03/closehandspushup-1456956569.gif"/></a></figure><ul id="ddfa0ee3-9ddf-4bc5-89c9-00fb1c43f09e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Overhead Extension</span></li></ul><figure id="6fe306b3-f017-4db8-8d47-9c5726c7ea30" class="image"><a href="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/workouts/2016/03/dumbbelloverheadtricepsextension-1456956005.gif"><img style="width:288px" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/workouts/2016/03/dumbbelloverheadtricepsextension-1456956005.gif"/></a></figure><ul id="73a93aa2-a83e-4fea-abd0-a003b161811f" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Skull Crushers</span></li></ul><figure id="2c73346d-f11e-42b0-92f5-349138dcfd93" class="image"><a href="https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/skull.gif?resize=480:*"><img style="width:288px" src="https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/skull.gif?resize=480:*"/></a></figure><ul id="62fc7215-6ede-4cf1-ba2f-cf3b906bcdb6" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Bent Overkick Back</span></li></ul><figure id="9c936044-d0db-49f7-bb8a-10393c8bdd1e" class="image"><a href="https://global-uploads.webflow.com/5d1d0d3f53ced35a29dbe169/5efbd9378b9d8c80c6d6280d_4blYQRyWZrSKUwGX8mNVSqz2zspdJf8IbnCxqLKZp1RMF-8DVSi-wjtuWAMOemZMvFrSGJWlAK7y6PgE3z1fAw_FA1obpVnXBL2O2zGSrEAXCyq2v9IOEHgUSv9xhcbJmFFqchtv.gif"><img style="width:288px" src="https://global-uploads.webflow.com/5d1d0d3f53ced35a29dbe169/5efbd9378b9d8c80c6d6280d_4blYQRyWZrSKUwGX8mNVSqz2zspdJf8IbnCxqLKZp1RMF-8DVSi-wjtuWAMOemZMvFrSGJWlAK7y6PgE3z1fAw_FA1obpVnXBL2O2zGSrEAXCyq2v9IOEHgUSv9xhcbJmFFqchtv.gif"/></a></figure></details></li></ul></details></li></ul><ul id="37409203-d6f2-4483-8c96-0a7efc38f46c" class="block-color-blue toggle"><li><details open=""><summary><strong>Tuesday (Back Biceps and Abs Workout)</strong></summary><ul id="b3d8226d-fae8-4e72-8419-4e6f0706330a" class="toggle"><li><details open=""><summary><strong>Back</strong></summary><ul id="78c6747e-4eda-460d-a5e0-828c4f3afc9f" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Pull-Ups ( Wide Grip) (3 SETS || 12-20 REP)</span></li></ul><figure id="0d80f859-9e7d-4793-9a6c-13fa736e07d7" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled.png"><img style="width:336px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled.png"/></a></figure><ul id="b54023a4-249b-43e7-bc41-9b1cc3cef6f6" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Dumbell Deadlift (3 SETS || 12-20 REP)</span></li></ul><figure id="57398b64-a4cb-41ac-a364-3312b6747f04" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%201.png"><img style="width:288px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%201.png"/></a></figure><ul id="fa6c8fc3-c226-4001-bf3d-bb15e2548306" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Bent-Over Row (3 SETS || 12-20 REP)</span></li></ul><figure id="81ec3a68-0330-4493-ae4c-58dd9191e450" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%202.png"><img style="width:288px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%202.png"/></a></figure><ul id="e11b84f7-6316-4e88-90b3-66fe8a3c7e4a" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Dumbell Shrug (3 SETS || 12-20 REP)</span></li></ul><figure id="b569e00d-7632-4e1a-abd0-567b0587a27c" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%203.png"><img style="width:288px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%203.png"/></a></figure></details></li></ul><ul id="ec918b7d-7468-4652-b499-ef10c469e96d" class="toggle"><li><details open=""><summary><strong>Biceps</strong></summary><ul id="93074466-9767-47b0-959f-17b82916fba6" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Bicep Curl (3 SETS || 12-20 REP)</span></li></ul><figure id="62b5ffd0-6237-4c29-b599-05887761d6ad" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%204.png"><img style="width:288px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%204.png"/></a></figure><ul id="00df6a86-6c88-4ef7-9f2e-b2614e40c6cf" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Hammer Curl (3 SETS || 12-20 REP)</span></li></ul><figure id="295cc749-4fea-485c-8cd3-f9b71da8a452" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%205.png"><img style="width:288px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%205.png"/></a></figure><ul id="51b01e99-82c1-4d83-bd3e-7f769230f611" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Concentration Curl (3 SETS || 12-20 REP)</span></li></ul><figure id="3f1f70d9-4787-4fb7-b4aa-22698c43645f" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%206.png"><img style="width:336px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%206.png"/></a></figure></details></li></ul><ul id="311fc440-1cdc-4aba-81c0-2b47da9165f7" class="toggle"><li><details open=""><summary><strong>Abs</strong></summary><ul id="6de91bc2-97a4-426f-a445-a92467641ba8" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Crunches (3 SETS || 12-20 REP)</span></li></ul><figure id="0821d79b-ca1e-494c-abbf-7c359279a95a" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%207.png"><img style="width:336px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%207.png"/></a></figure><ul id="1944a87b-9a98-4784-9e08-705863c05948" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Reverse Crunches (3 SETS || 12-20 REP)</span></li></ul><figure id="e45e29c4-1e61-42d6-95ac-cf1f13ee0064" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%208.png"><img style="width:336px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%208.png"/></a></figure><ul id="0ce44b8b-ed33-4c4d-963b-83400d57c26c" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Bicycle Crunches (3 SETS || 12-20 REP)</span></li></ul><figure id="24b21a37-971c-469c-a6f8-77d8cfb54449" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%209.png"><img style="width:336px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%209.png"/></a></figure><p id="3f6b3feb-5459-4750-9901-b85573279e23" class="">
+</p></details></li></ul></details></li></ul><ul id="85cc6c8d-8bcf-4eec-ada3-6a5fe220a1fb" class="block-color-teal toggle"><li><details open=""><summary><strong>Wednesday (Shoulder and Leg Workout)</strong></summary><ul id="6e95aa47-d541-4ee4-b54c-e62a41e2d247" class="toggle"><li><details open=""><summary>Shoulder</summary><ul id="144d90fc-92a2-4d9f-8abc-f1d6303a4bed" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Shoulder and Overhead Press (3 SETS || 12-20 REP)</span></li></ul><figure id="63e15101-5fb5-4bf0-826e-1f7d7ede764d" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2010.png"><img style="width:336px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2010.png"/></a></figure><ul id="be7cfe2d-a857-471d-90de-823d3096bf17" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Front Raise (3 SETS || 12-20 REP)</span></li></ul><figure id="6bb87a6a-f0e2-4742-85c0-0db9899b4f6b" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2011.png"><img style="width:288px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2011.png"/></a></figure><ul id="a44f22f2-1c12-4fcb-b9ac-9e1849a7ac66" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Lateral Raise (3 SETS || 12-20 REP)</span></li></ul><figure id="cad1b763-c4c3-443c-be30-693dadc8f45a" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2012.png"><img style="width:288px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2012.png"/></a></figure><ul id="63fee805-86fd-48f8-b2cc-09c2dd500037" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Bent-Over Lateral Raise (3 SETS || 12-20 REP)</span></li></ul><figure id="915e1bef-8b40-4bf4-bdfc-b155843654f2" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2013.png"><img style="width:336px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2013.png"/></a></figure><ul id="b33c010b-aba0-4ee7-b052-6c239d636a08" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Scott Press (3 SETS || 12-20 REP)</span></li></ul><figure id="bc304ed3-9f4c-492e-be3d-c0061dd05ce7" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2014.png"><img style="width:384px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2014.png"/></a></figure></details></li></ul><ul id="5c93f204-d258-418f-bc6b-2492c4804620" class="toggle"><li><details open=""><summary>Leg</summary><ul id="506a63f9-e36c-4a64-a353-8ac08c1850fc" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Dumbell Squats (3 SETS || 8-10 REPS)</span></li></ul><figure id="5c413b78-6ac9-4c29-917f-292327c10539" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2015.png"><img style="width:288px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2015.png"/></a></figure><ul id="f4339ca6-1f03-4063-b47b-21df48704f2d" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Dumbell Lunges (3 SETS || 8-10 REPS)</span></li></ul><figure id="2820e283-87ee-4686-a344-2b57fc0439da" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2016.png"><img style="width:432px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2016.png"/></a></figure><ul id="fbb8cdb3-b636-4192-81c0-ae6025cc1a75" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Calf Raise (3 SETS || 12-20 REPS)</span></li></ul><figure id="425b666a-17b4-4905-9868-4a1a1da33598" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2017.png"><img style="width:432px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2017.png"/></a></figure></details></li></ul></details></li></ul><ul id="691ffc90-9e64-4da1-9ff5-c6613287c713" class="block-color-yellow toggle"><li><details open=""><summary><strong>Thursday (Chest and Triceps Workout)</strong></summary><ul id="7b136398-d8ac-486b-9507-39f8b1f26c63" class="toggle"><li><details open=""><summary><strong>Chest</strong></summary><ul id="a7bb639b-5998-49b6-9ded-53443de0940d" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Pushups (3 SETS || 12-20 REP)</span></li></ul><p id="e43c41c9-bcd6-44a0-b7b9-cf17e1fb5b0b" class="">The arm and back should be straight. </p><figure id="14513601-11be-47c5-8019-12b80141462d" class="image"><a href="https://c.tenor.com/gI-8qCUEko8AAAAM/pushup.gif"><img style="width:288px" src="https://c.tenor.com/gI-8qCUEko8AAAAM/pushup.gif"/></a></figure><ul id="4192eedf-f16b-49d4-a696-e2d597eb9a06" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Incline Pushups (3 SETS || 12-20 REP )</span><p id="0d6c1b78-5b0e-4b2d-bf2b-b032537a7ccc" class="">Straight Arm and Back</p></li></ul><figure id="55419a21-8af8-418b-97cd-10110d1d637a" class="image"><a href="https://177d01fbswx3jjl1t20gdr8j-wpengine.netdna-ssl.com/wp-content/uploads/2019/06/Incline-Push-Up.gif"><img style="width:288px" src="https://177d01fbswx3jjl1t20gdr8j-wpengine.netdna-ssl.com/wp-content/uploads/2019/06/Incline-Push-Up.gif"/></a></figure><ul id="32f19b4f-0d47-4508-bc23-cce9d0276fbe" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Decline Pushups (3 SETS || 12-20 REP)</span></li></ul><figure id="b2fd00ba-1029-4613-b956-df3fdd4fbaad" class="image"><a href="https://fitnessfreakpoint.com/wp-content/uploads/2020/08/Decline-Push-Up.gif"><img style="width:288px" src="https://fitnessfreakpoint.com/wp-content/uploads/2020/08/Decline-Push-Up.gif"/></a></figure><ul id="da4f0fc2-eb34-4400-b8f2-478ab03098ab" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Dumbell Scoop (3 SETS || 12-20 REP)</span></li></ul><figure id="f4a61414-2b2e-4935-b43e-61924cd40eec" class="image"><a href="https://qph.fs.quoracdn.net/main-qimg-a135ab173947ce2ea971d88c86460fe3"><img style="width:192px" src="https://qph.fs.quoracdn.net/main-qimg-a135ab173947ce2ea971d88c86460fe3"/></a></figure><ul id="2481d646-36dd-4246-995f-0926112f730f" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Dumbell Fly (Floor) (3 SETS || 12-20 REP)</span></li></ul><figure id="008b6229-87e3-40f5-af80-e7fea99033dc" class="image"><a href="https://workouts4fitness.files.wordpress.com/2017/03/incline-fly-dumbbell-bench-press.gif?w=640"><img style="width:336px" src="https://workouts4fitness.files.wordpress.com/2017/03/incline-fly-dumbbell-bench-press.gif?w=640"/></a></figure></details></li></ul><ul id="0d7fb699-1a0b-4117-aef9-33f7a8dcb0bf" class="toggle"><li><details open=""><summary><strong>Triceps</strong></summary><ul id="5f73b841-7c4e-4c8d-bca7-c9e1f9a311a6" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Triceps Bench Dips</span></li></ul><figure id="7fffd26b-f0a8-426e-8d5f-281518c2564a" class="image"><a href="https://thumbs.gfycat.com/FittingImpassionedAmethystinepython-max-1mb.gif"><img style="width:288px" src="https://thumbs.gfycat.com/FittingImpassionedAmethystinepython-max-1mb.gif"/></a></figure><ul id="063995e7-5514-4826-aedf-f5ecbd434285" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Close Grip Pushups</span></li></ul><figure id="884ac81b-2d39-4a03-8f29-8264abfb958a" class="image"><a href="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/workouts/2016/03/closehandspushup-1456956569.gif"><img style="width:288px" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/workouts/2016/03/closehandspushup-1456956569.gif"/></a></figure><ul id="a965c357-989f-485c-927e-34173e563768" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Overhead Extension</span></li></ul><figure id="22c67910-3119-455c-a2dc-11f7851d7ab8" class="image"><a href="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/workouts/2016/03/dumbbelloverheadtricepsextension-1456956005.gif"><img style="width:288px" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/workouts/2016/03/dumbbelloverheadtricepsextension-1456956005.gif"/></a></figure><ul id="8d5d646d-89a2-40a5-a699-6633ae73d0da" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Skull Crushers</span></li></ul><figure id="b6950da6-ca9a-468e-8a5b-7c6b6f1e95cb" class="image"><a href="https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/skull.gif?resize=480:*"><img style="width:288px" src="https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/skull.gif?resize=480:*"/></a></figure><ul id="24274454-4a9b-44b7-8ba3-028253d427ba" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Bent Overkick Back</span></li></ul><figure id="a241f93d-7b6e-4408-84ff-f8ae3956b323" class="image"><a href="https://global-uploads.webflow.com/5d1d0d3f53ced35a29dbe169/5efbd9378b9d8c80c6d6280d_4blYQRyWZrSKUwGX8mNVSqz2zspdJf8IbnCxqLKZp1RMF-8DVSi-wjtuWAMOemZMvFrSGJWlAK7y6PgE3z1fAw_FA1obpVnXBL2O2zGSrEAXCyq2v9IOEHgUSv9xhcbJmFFqchtv.gif"><img style="width:288px" src="https://global-uploads.webflow.com/5d1d0d3f53ced35a29dbe169/5efbd9378b9d8c80c6d6280d_4blYQRyWZrSKUwGX8mNVSqz2zspdJf8IbnCxqLKZp1RMF-8DVSi-wjtuWAMOemZMvFrSGJWlAK7y6PgE3z1fAw_FA1obpVnXBL2O2zGSrEAXCyq2v9IOEHgUSv9xhcbJmFFqchtv.gif"/></a></figure></details></li></ul></details></li></ul><ul id="ae359ce7-247f-4a0f-abd6-071021f4921a" class="block-color-brown toggle"><li><details open=""><summary><strong>Friday (Back Biceps and Abs Workout)</strong></summary><ul id="83126d4c-e17d-488c-9e79-cb96ff49b58e" class="toggle"><li><details open=""><summary><strong>Back</strong></summary><ul id="29f0c24b-2fa5-446b-832d-870cd8636634" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Pull-Ups ( Wide Grip) (3 SETS || 12-20 REP)</span></li></ul><figure id="1b713264-595d-4805-8ddc-f3454e4d7453" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled.png"><img style="width:336px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled.png"/></a></figure><ul id="cb05cc4d-80a1-4e1f-ba57-46f313e4696c" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Dumbell Deadlift (3 SETS || 12-20 REP)</span></li></ul><figure id="0e37ca83-0be1-4272-acf0-d188bcd2b9b3" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%201.png"><img style="width:288px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%201.png"/></a></figure><ul id="a2b60f05-b7a9-4a6a-b635-bd1e8ec1a4d9" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Bent-Over Row (3 SETS || 12-20 REP)</span></li></ul><figure id="7b09fef3-6c3a-41df-b809-52c49d6b6c05" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%202.png"><img style="width:288px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%202.png"/></a></figure><ul id="eef1c1ac-7a1f-487b-a909-d4b2c2a5e6b7" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Dumbell Shrug (3 SETS || 12-20 REP)</span></li></ul><figure id="626a4662-f5af-434b-b0ab-651039808dab" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%203.png"><img style="width:288px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%203.png"/></a></figure></details></li></ul><ul id="367a394e-ed61-4ffd-a504-a8b5232701a4" class="toggle"><li><details open=""><summary><strong>Biceps</strong></summary><ul id="39d8e1c5-8d95-4cc5-a1ca-1caf1cd70686" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Bicep Curl (3 SETS || 12-20 REP)</span></li></ul><figure id="69a8b956-1291-4425-aa24-6ac77a1ef9a0" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%204.png"><img style="width:288px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%204.png"/></a></figure><ul id="239adbee-0b07-45fc-8295-48a81eb80cd3" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Hammer Curl (3 SETS || 12-20 REP)</span></li></ul><figure id="8685e597-cea9-442a-b15d-ff817495efe4" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%205.png"><img style="width:288px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%205.png"/></a></figure><ul id="3ea1f002-2425-44e0-bdb8-15f3066da537" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Concentration Curl (3 SETS || 12-20 REP)</span></li></ul><figure id="a6092c2e-985c-495f-a78a-b9cd97baa8dd" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%206.png"><img style="width:336px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%206.png"/></a></figure></details></li></ul><ul id="f3bf5237-543a-4bdb-855c-a3ee3fc303c2" class="toggle"><li><details open=""><summary><strong>Abs</strong></summary><ul id="c900a519-f8f7-4fa7-945a-3f62ee6ec118" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Crunches (3 SETS || 12-20 REP)</span></li></ul><figure id="4617ed98-67f6-4c4b-9085-da2bfddb4d7d" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%207.png"><img style="width:336px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%207.png"/></a></figure><ul id="3eb85659-3db5-4beb-aec6-87d5566f6eee" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Reverse Crunches (3 SETS || 12-20 REP)</span></li></ul><figure id="f89bbe95-405e-4d62-9f60-b19800e94555" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%208.png"><img style="width:336px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%208.png"/></a></figure><ul id="764f08f3-f103-40c3-a0d5-f1fc1205b83f" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Bicycle Crunches (3 SETS || 12-20 REP)</span></li></ul><figure id="7b051cd6-de5e-4f67-b743-f7b9a49a7892" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%209.png"><img style="width:336px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%209.png"/></a></figure><p id="29d62620-c6cd-4be8-9fe6-83e96639cad3" class="">
+</p></details></li></ul></details></li></ul><ul id="6df4cf1e-ade6-470d-b828-b235b5767024" class="block-color-orange toggle"><li><details open=""><summary><strong>Saturday (Shoulder and Leg Workout)</strong></summary><ul id="f7cd3d61-031e-43bd-a0b7-362cf1f92b9e" class="toggle"><li><details open=""><summary>Shoulder</summary><ul id="355ab914-1795-4c16-8cb4-fc74611a324c" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Shoulder and Overhead Press (3 SETS || 12-20 REP)</span></li></ul><figure id="bb082bda-c2a0-48cc-aa34-307a7a783060" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2010.png"><img style="width:336px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2010.png"/></a></figure><ul id="2216cb70-478c-412a-b92f-8cea894fa41b" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Front Raise (3 SETS || 12-20 REP)</span></li></ul><figure id="29e6f5e2-aa26-4c77-ac16-1cbe4f26420e" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2011.png"><img style="width:288px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2011.png"/></a></figure><ul id="15dc4944-911e-4591-9f02-f5dc2399c07c" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Lateral Raise (3 SETS || 12-20 REP)</span></li></ul><figure id="4095a6ec-f360-453d-9c1f-57cde3b79536" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2012.png"><img style="width:288px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2012.png"/></a></figure><ul id="28b08f10-5411-4e1e-9d23-47ffe3420d0e" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Bent-Over Lateral Raise (3 SETS || 12-20 REP)</span></li></ul><figure id="c830eda6-a1eb-4979-952e-1d7792627fd3" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2013.png"><img style="width:336px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2013.png"/></a></figure><ul id="8b228852-aa88-45c1-a6a8-d092f24e319b" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Scott Press (3 SETS || 12-20 REP)</span></li></ul><figure id="1c8abd7b-283b-41bf-b055-5ac2d35c6d4f" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2014.png"><img style="width:384px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2014.png"/></a></figure></details></li></ul><ul id="de3070d3-9ba8-41a3-a668-52a6ff2555ad" class="toggle"><li><details open=""><summary>Leg</summary><ul id="3a411ee9-f4c1-487d-93e0-810cd6333fea" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Dumbell Squats (3 SETS || 8-10 REPS)</span></li></ul><figure id="6f283eba-9e59-4e3b-8050-78d01bcaddd0" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2015.png"><img style="width:288px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2015.png"/></a></figure><ul id="f32461af-9e1b-4892-ab4f-0c4e2ce69de3" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Dumbell Lunges (3 SETS || 8-10 REPS)</span></li></ul><figure id="ea6b6bff-6b03-4cc3-bb33-4d72f1357d88" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2016.png"><img style="width:432px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2016.png"/></a></figure><ul id="b571d2d9-42b7-407e-b910-9750567d04e4" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Calf Raise (3 SETS || 12-20 REPS)</span></li></ul><figure id="14641c9a-61be-41f1-bf23-9a896f2cc3aa" class="image"><a href="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2017.png"><img style="width:432px" src="Workout%20Tracker%200d80f8599e7d47939a6c13fa736e07d7/Untitled%2017.png"/></a></figure></details></li></ul></details></li></ul></div></article></body></html>
